@@ -12,7 +12,9 @@ namespace AdventOfCode.Solutions
 
     public static class Utilities
     {
+        // my own utilities
 
+        // The following are not written by me
         public static int[] ToIntArray(this string str, string delimiter = "")
         {
             if(delimiter == "")
