@@ -235,7 +235,7 @@ namespace AdventOfCode.Solutions.Year2020
         {
             if (year.Length == 4 && int.TryParse(year.ToString(), out int n))
             {
-                if (!(n >= oldest && n <= youngest))
+                if ((n >= oldest && n <= youngest))
                     return true;
             }
             return false;
