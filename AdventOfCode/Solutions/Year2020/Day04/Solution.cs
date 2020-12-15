@@ -155,18 +155,31 @@ namespace AdventOfCode.Solutions.Year2020
 
             // pid(Passport ID) - a nine - digit number, including leading zeroes.
             // 9 digits, all zeros
-            string ID_pattern = "/d{9}";
-            if (!Regex.IsMatch(p["pid"], ID_pattern))
+
+            //no more regex
+            //string ID_pattern = "/d{9}";
+            //if (!Regex.IsMatch(p["pid"], ID_pattern))
+            string pid = p["pid"];
+            
+            if(pid.Length != 9)
             {
-                Debug.Print("Failed personal ID check");
+                Debug.Print("invalid personal ID: {0}", pid);
+                Debug.Print("reason: wrong number of digits");
+                return false;
+            } 
+            else if(int.TryParse(pid, out int _) == false)
+            {
+                Debug.Print("invalid personal ID: {0}", pid);
+                Debug.Print("reason: ID must only contain digits 0-9");
                 return false;
             }
+
             // cid(Country ID) - ignored, missing or not.
-            if (!p.ContainsKey("cid") || !Regex.IsMatch(p["cid"], ID_pattern))
-            {
-                Debug.Print("failed Country ID check, passport is still valid");
-            }
-            else Debug.Print("Passed all checks, passport is valid");
+            //if (!p.ContainsKey("cid") || !Regex.IsMatch(p["cid"], ID_pattern))
+            //{
+            //    Debug.Print("failed Country ID check, passport is still valid");
+            //}
+            //else Debug.Print("Passed all checks, passport is valid");
 
             return true;
         }
