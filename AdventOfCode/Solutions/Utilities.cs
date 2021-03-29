@@ -14,6 +14,28 @@ namespace AdventOfCode.Solutions
     {
         // my own utilities
 
+        /// <summary>
+        /// split a string by the lines that are empty or only contain whitespace.
+        /// always trims every line
+        /// </summary>
+        /// <param name="input">String to trim and split</param>
+        /// <returns></returns>
+        public static string[] SplitByEmptyLine(this string input)
+        {
+            return input
+                .Split(new[] { "\r", "\n", "\r\n" }, StringSplitOptions.TrimEntries)
+                .Aggregate("",
+                    (string merged, string next) =>
+                        merged += (string.IsNullOrWhiteSpace(next) ? "\n" : next.Trim()) + "\n",
+                    cleaned => cleaned.Split("\n\n"))
+                .ToArray();
+        }
+
+        public static string DebugOutput()
+        {
+            return string.Empty;
+        }
+
         // The following are not written by me
         public static int[] ToIntArray(this string str, string delimiter = "")
         {
